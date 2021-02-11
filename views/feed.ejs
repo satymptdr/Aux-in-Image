@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://kit.fontawesome.com/d5b0e601a7.js" crossorigin="anonymous"></script>
+    <title>XMeme Feed Page</title>
+    <link href="/static/feed.css" rel="stylesheet" type="text/css">
+    <!-- <style>
+        *{
+    margin: 0;
+    padding: 0;
+    }
+    body{
+        background-color: #e3dddd;
+        background-size: cover; 
+        
+    }
+    h1{
+        text-align: center;
+        color: #9b5555;
+    }
+    .container1{ 
+        display: flex;
+        
+        margin: 7px;
+        border: 2px solid black;
+        border-radius: 5px;
+    }
+    .container1 h3{
+        margin: 7px;
+    }
+    .container1 h5{
+        margin: 5px;
+        padding-top: 6px;
+    }
+    
+    .box{
+        margin: 4px;
+        border-radius: 5px;
+        border: solid 2px darkgray;
+    }
+    .box input{  
+        background: none;
+        padding: 5px 10px;
+        border: none;
+        outline:none;
+        color: black;
+    }
+
+    .btn{
+        color: white;
+        cursor: pointer;
+        outline: none;
+        margin: 4px;
+        padding: 5px 34px;
+        border: 3px solid darkgray;
+        border-radius: 6px;
+        font-size: 13px;
+        background: #bc8d8d;
+        font-weight: bold;
+    }
+
+    .container2{ 
+        padding: 10px;
+        margin: 7px;
+        border: 2px solid black;
+        border-radius: 5px;
+        height: 100vh;
+    }
+    </style> -->
+</head>
+
+<body>
+    <h1>XMeme Feed</h1>
+    <div class="container1">
+        <form action="/submit" method="post">
+        <h3>Insert Meme</h3>
+        <h5>Name:</h5>
+        <div class="box">
+            <input type="name" Name="name" id="name" placeholder="Enter Your Name">
+        </div>
+        <h5>Caption:</h5>
+        <div class="box">
+            <input type="caption" Name="caption" id="caption" placeholder="Enter Caption">
+        </div>
+        <h5>Url:</h5>
+        <div class="box">
+            <input type="url" Name="url" id="url" placeholder="Enter Url">
+        </div>
+        <button class="btn">Submit</button>
+        
+    </form>
+    <form action="/update" method="post">
+        <h3>Update Meme</h3>
+        <h5>Name:</h5>
+        <div class="box">
+            <input type="name" Name="name" id="name" placeholder="Enter Name to update">
+        </div>
+        <h5>Caption:</h5>
+        <div class="box">
+            <input type="caption" Name="caption" id="caption" placeholder="Enter Caption">
+        </div>
+        <h5>Url:</h5>
+        <div class="box">
+            <input type="url" Name="url" id="url" placeholder="Enter Url">
+        </div>
+        <button class="btn">Update</button>
+    </form>
+    <form action="/delete" method="delete">
+        <h3>Delete Meme:</h3>
+        <h5>Name:</h5>
+        <div class="box">
+            <input type="name" Name="name" id="name" placeholder="Enter Name to delete">
+        </div>
+        <button class="btn">Delete</button></form>
+    </div>
+
+    <div class="container2">
+
+    </div>
+</body>
+
+</html>
