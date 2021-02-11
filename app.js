@@ -37,8 +37,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 var xmemeSchema = mongoose.Schema({
    name: String,
    caption: String,
-   url: String
-
+   url: String,
+   image: String
 });
 
 var Meme = mongoose.model('xmeme', xmemeSchema);
@@ -77,13 +77,22 @@ app.post('/submit', function (req, res) {
 });
 
 app.get('/meme', async function (req, res) {
-   Meme.find(
-      // function (err, response) {
-      // if (err) console.log("error", err);
-      // else console.log(response);}
-      ).forEach( function(myDoc) { print( "user: " + myDoc.name ); } );
-
-   res.redirect('/');
+   var values = [];
+   Meme.find(function (err, response) {
+      if (err) console.log("error", err);
+      else {
+         var i;
+         for (i = 0; i < 10; i++) {
+            console.log(response[i]);
+            if (response[i] != undefined) {
+               values[i] = response[i];
+               console.log(values[i], "values i");
+            }
+         }
+         console.log(values);
+         res.render('feed', { values });
+      }
+   })
 });
 
 //////////////111111111111
