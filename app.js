@@ -28,6 +28,7 @@ app.use(express.static(__dirname + '/'));
 app.use(express.static('views'));
 
 const mongoose = require('mongoose');
+const { Router } = require('express');
 mongoose.set('useFindAndModify', false);
 mongoose.connect('mongodb://localhost/XMeme', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -63,13 +64,12 @@ app.post('/submit', function (req, res) {
                newMeme.save(function (err, newMeme) {
                   if (err) return console.error(err);
                   else {
-                     res.render('feed');
+                     res.redirect('meme');
                   }
                });
             }
             else
                console.log("Record already exit");
-
          }
 
       });
@@ -95,81 +95,34 @@ app.get('/meme', async function (req, res) {
    })
 });
 
-//////////////111111111111
-//Updating Record in database
 
-// app.post('/update', (req, res) => {
-//    //console.log(req,"session");
-//    const meme = new Meme({
-//       name: req.body.id,
-//       caption: req.body.caption,
-//       url: req.body.url,
-//    });
-//    Meme.updateOne({ _id: req.params.id }, meme).then(
-//       () => {
-//          res.status(201).json({
-//             message: 'Thing updated successfully!'
-//          });
-//       }
-//    ).catch(
-//       (error) => {
-//          res.status(400).json({
-//             error: error
-//          });
-//       }
-//    );
-// });
+// Post route to update record 
+app.post('/update', async (req, res) => {
+   const updateName = req.body.name;
 
-app.post('/update', function (req, res) {
-   var memeInfo = req.body; //Get the parsed information
-
-   if (!req.body.name || !req.body.caption || !req.body.url) {
-      res.status("400");
-      res.send("Invalid details!");
-   } else {
-      Meme.findOne({ "name": req.body.name }, function (err, value) {
-         if (err) console.log(err);
-         else {
-            if (value == null || value == undefined) {
-               var updateMeme = new Meme(
-                  {
-                     "name": memeInfo.name,
-                     "caption": memeInfo.caption,
-                     "url": memeInfo.url
-                  });
-               //Saving Meme data to database
-               Meme.updateOne({ "name":memeInfo.name  }, updateMeme).then(
-                  function () {
-                     res.status(201).json({
-                        message: 'Thing updated successfully!'
-                     });
-                     res.render('/');
-                  }
-               ).catch(
-                  (error) => {
-                     res.status(400).json({
-                        error: error
-                     });
-                  }
-               );
-
-               }
+   Meme.findOne({ "name": req.body.name }, async (err, value) => {
+      if (err) console.log(err);
+      else {
+         var id = value.id;
+         var c = value.caption;
+         var c1 = req.body.caption;
+         var u = value.url;
+         var u1 = req.body.url;
+         console.log("Updating on this id : ", id);
+         var updateMeme = [{
+            $set: { "caption": c, caption: c1, "url": u, url: u1 }
+         }];
+         console.log("caption : ", req.body.caption);
+         const record = Meme.updateOne({ _id: id }, updateMeme, function (err, data) {
+            if (err) throw err;
+            else {
+               res.redirect('meme');
+               console.log("Record Updated!!!!!");
             }
-      });
-   }
-})
 
-//Deleting Record from database
-
-// Meme.findOneAndRemove({ name: "Saiyam" }, function (err, response) {
-//    console.log(response);
-// });
-
-app.delete('/delete/:id', function (req, res) {
-   Meme.findByIdAndRemove(req.params.id, function (err, response) {
-      if (err) res.json({ message: "Error in deleting record id " + req.params.id });
-      else res.json({ message: "Person with id " + req.params.id + " removed." });
-   });
+         });
+      }
+   })
 });
 
 
