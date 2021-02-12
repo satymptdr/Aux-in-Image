@@ -98,29 +98,66 @@ app.get('/meme', async function (req, res) {
 //////////////111111111111
 //Updating Record in database
 
-app.post('/update', (req, res) => {
-   //console.log(req,"session");
-   const meme = new Meme({
-      name: req.body.id,
-      caption: req.body.caption,
-      url: req.body.url,
-   });
-   Meme.updateOne({ _id: req.params.id }, meme).then(
-      () => {
-         res.status(201).json({
-            message: 'Thing updated successfully!'
-         });
-      }
-   ).catch(
-      (error) => {
-         res.status(400).json({
-            error: error
-         });
-      }
-   );
-});
+// app.post('/update', (req, res) => {
+//    //console.log(req,"session");
+//    const meme = new Meme({
+//       name: req.body.id,
+//       caption: req.body.caption,
+//       url: req.body.url,
+//    });
+//    Meme.updateOne({ _id: req.params.id }, meme).then(
+//       () => {
+//          res.status(201).json({
+//             message: 'Thing updated successfully!'
+//          });
+//       }
+//    ).catch(
+//       (error) => {
+//          res.status(400).json({
+//             error: error
+//          });
+//       }
+//    );
+// });
 
+app.post('/update', function (req, res) {
+   var memeInfo = req.body; //Get the parsed information
 
+   if (!req.body.name || !req.body.caption || !req.body.url) {
+      res.status("400");
+      res.send("Invalid details!");
+   } else {
+      Meme.findOne({ "name": req.body.name }, function (err, value) {
+         if (err) console.log(err);
+         else {
+            if (value == null || value == undefined) {
+               var updateMeme = new Meme(
+                  {
+                     "name": memeInfo.name,
+                     "caption": memeInfo.caption,
+                     "url": memeInfo.url
+                  });
+               //Saving Meme data to database
+               Meme.updateOne({ "name":memeInfo.name  }, updateMeme).then(
+                  function () {
+                     res.status(201).json({
+                        message: 'Thing updated successfully!'
+                     });
+                     res.render('/');
+                  }
+               ).catch(
+                  (error) => {
+                     res.status(400).json({
+                        error: error
+                     });
+                  }
+               );
+
+               }
+            }
+      });
+   }
+})
 
 //Deleting Record from database
 
