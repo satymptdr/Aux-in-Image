@@ -3,6 +3,11 @@
 
 <head>
     <script src="https://kit.fontawesome.com/d5b0e601a7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
     <title>XMeme Feed Page</title>
     <link href="/static/feed.css" rel="stylesheet" type="text/css">
     <!-- <style>
@@ -74,67 +79,93 @@
     <h1>XMeme Feed</h1>
     <div class="container1">
         <form action="/submit" method="post">
-        <h3>Insert Meme</h3>
-        <h5>Name:</h5>
-        <div class="box">
-            <input type="name" Name="name" id="name" placeholder="Enter Your Name">
-        </div>
-        <h5>Caption:</h5>
-        <div class="box">
-            <input type="caption" Name="caption" id="caption" placeholder="Enter Caption">
-        </div>
-        <h5>Url:</h5>
-        <div class="box">
-            <input type="url" Name="url" id="url" placeholder="Enter Url">
-        </div>
-        <button class="btn">Submit</button>
-        
-    </form>
-    <form action="/update" method="post">
-        <h3>Update Meme</h3>
-        <h5>Name:</h5>
-        <div class="box">
-            <input type="name" Name="name" id="name" placeholder="Enter Name to update">
-        </div>
-        <h5>Caption:</h5>
-        <div class="box">
-            <input type="caption" Name="caption" id="caption" placeholder="Enter Caption">
-        </div>
-        <h5>Url:</h5>
-        <div class="box">
-            <input type="url" Name="url" id="url" placeholder="Enter Url">
-        </div>
-        <button class="btn">Update</button>
-    </form>
-    <form action="/delete" method="delete">
-        <h3>Delete Meme:</h3>
-        <h5>Name:</h5>
-        <div class="box">
-            <input type="name" Name="name" id="name" placeholder="Enter Name to delete">
-        </div>
-        <button class="btn">Delete</button></form>
+            <h3>Insert Meme</h3>
+            <h5>Name:</h5>
+            <div class="box">
+                <input type="name" Name="name" id="name" placeholder="Enter Your Name">
+            </div>
+            <h5>Caption:</h5>
+            <div class="box">
+                <input type="caption" Name="caption" id="caption" placeholder="Enter Caption">
+            </div>
+            <h5>Url:</h5>
+            <div class="box">
+                <input type="url" Name="url" id="url" placeholder="Enter Url">
+            </div>
+            <button class="btn">Submit</button>
+
+        </form>
+        <form action="/update" method="post">
+            <h3>Update Meme</h3>
+            <h5>Name:</h5>
+            <div class="box">
+                <input type="name" Name="name" id="name" placeholder="Enter Name to update">
+            </div>
+            <h5>Caption:</h5>
+            <div class="box">
+                <input type="caption" Name="caption" id="caption" placeholder="Enter Caption">
+            </div>
+            <h5>Url:</h5>
+            <div class="box">
+                <input type="url" Name="url" id="url" placeholder="Enter Url">
+            </div>
+            <button class="btn">Update</button>
+        </form>
+        <form action="/delete" method="delete">
+            <h3>Delete Meme:</h3>
+            <h5>Name:</h5>
+            <div class="box">
+                <input type="name" Name="name" id="name" placeholder="Enter Name to delete">
+            </div>
+            <button class="btn">Delete</button>
+        </form>
     </div>
     <!-- Container to display images -->
     <div class="container2">
-        <%if (values.length >0 )%>
-        <%values.forEach(function (value) {%>
-            <label for="">Name :</label>
-            <h1>
-                <%=value.name%>
-            </h1>
-            <label for="">Caption : </label>
-            <h2>
-                <%=value.caption%>
-            </h2>
-            <label for="">Url : </label>
-            <h2>
-                <%=value.url%>
-            </h2>
-            
-        <%})%>
-        
+        <%if (values.length>0 )%>
+            <%values.forEach(function (value) {%>
+                <!-- <div class="grid-container"> -->
+
+                <span>
+                    <!-- <div class="container">
+                        <img src="<%=value.url%>" alt="Some-image" style="width:500px;height: 500px;">
+                        <div class="text-block">
+                        </div>
+                    </div> -->
+                    <div class="box-img">
+                        <img src="<%=value.url%>" alt="Some-image" style="width:500px;height: 500px;">
+                        <div class="text"  contentEditable role='textbox' aria-multiline='true'>
+                            <h1><%=value.caption%></h1>
+                        </div>
+                    </div>
+                </span>
+                <!-- </div> -->
+                <!-- <div class="gallery" >
+                
+                    <div class="gallery_object">
+                        <h3>
+                            <label for="">Name :</label>
+                            <%=value.name%>
+                        </h3>
+                        <h5>
+                            <label for="">Caption : </label>
+                            <%=value.caption%>
+                        </h5>
+                        <h5>
+                            <label for="">Url : </label>
+                            <span><%=value.url%></span>
+                            <img src="<%=value.url%>" alt="some text"/>
+                            
+                        </h5>
+
+                    </div>
+                </div> -->
+                <%})%>
+
     </div>
-        
+
+    </div>
+
     </div>
 </body>
 
