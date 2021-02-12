@@ -10,69 +10,7 @@
 
     <title>XMeme Feed Page</title>
     <link href="/static/feed.css" rel="stylesheet" type="text/css">
-    <!-- <style>
-        *{
-    margin: 0;
-    padding: 0;
-    }
-    body{
-        background-color: #e3dddd;
-        background-size: cover; 
-        
-    }
-    h1{
-        text-align: center;
-        color: #9b5555;
-    }
-    .container1{ 
-        display: flex;
-        
-        margin: 7px;
-        border: 2px solid black;
-        border-radius: 5px;
-    }
-    .container1 h3{
-        margin: 7px;
-    }
-    .container1 h5{
-        margin: 5px;
-        padding-top: 6px;
-    }
     
-    .box{
-        margin: 4px;
-        border-radius: 5px;
-        border: solid 2px darkgray;
-    }
-    .box input{  
-        background: none;
-        padding: 5px 10px;
-        border: none;
-        outline:none;
-        color: black;
-    }
-
-    .btn{
-        color: white;
-        cursor: pointer;
-        outline: none;
-        margin: 4px;
-        padding: 5px 34px;
-        border: 3px solid darkgray;
-        border-radius: 6px;
-        font-size: 13px;
-        background: #bc8d8d;
-        font-weight: bold;
-    }
-
-    .container2{ 
-        padding: 10px;
-        margin: 7px;
-        border: 2px solid black;
-        border-radius: 5px;
-        height: 100vh;
-    }
-    </style> -->
 </head>
 
 <body>
@@ -120,46 +58,22 @@
             <button class="btn">Delete</button>
         </form>
     </div>
-    <!-- Container to display images -->
+   
     <div class="container2">
+        <h1>Memes</h1>
         <%if (values.length>0 )%>
             <%values.forEach(function (value) {%>
-                <!-- <div class="grid-container"> -->
 
                 <span>
-                    <!-- <div class="container">
-                        <img src="<%=value.url%>" alt="Some-image" style="width:500px;height: 500px;">
-                        <div class="text-block">
-                        </div>
-                    </div> -->
+                    
                     <div class="box-img">
-                        <img src="<%=value.url%>" alt="Some-image" style="width:500px;height: 500px;">
+                        <img src="<%=value.url%>" alt="Some-image" style="width:400px;height: 400px;">
                         <div class="text"  contentEditable role='textbox' aria-multiline='true'>
-                            <h1><%=value.caption%></h1>
+                            <h4> <i class="fa fa-info-circle"></i> <%=value.caption%> by <%=value.name%></h4>
                         </div>
                     </div>
                 </span>
-                <!-- </div> -->
-                <!-- <div class="gallery" >
-                
-                    <div class="gallery_object">
-                        <h3>
-                            <label for="">Name :</label>
-                            <%=value.name%>
-                        </h3>
-                        <h5>
-                            <label for="">Caption : </label>
-                            <%=value.caption%>
-                        </h5>
-                        <h5>
-                            <label for="">Url : </label>
-                            <span><%=value.url%></span>
-                            <img src="<%=value.url%>" alt="some text"/>
-                            
-                        </h5>
-
-                    </div>
-                </div> -->
+               
                 <%})%>
 
     </div>
