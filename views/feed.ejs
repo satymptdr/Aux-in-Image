@@ -10,13 +10,13 @@
 
     <title>XMeme Feed Page</title>
     <link href="/static/feed.css" rel="stylesheet" type="text/css">
-    
+
 </head>
 
 <body>
     <h1>XMeme Feed</h1>
     <div class="container1">
-        <form action="/submit" method="post">
+        <form class="form1" action="/submit" method="post">
             <h3>Insert Meme</h3>
             <h5>Name:</h5>
             <div class="box">
@@ -33,40 +33,37 @@
             <button class="btn">Submit</button>
 
         </form>
-        <form action="/update" method="post">
-            <h3>Update Meme</h3>
-            <h5>Name:</h5>
-            <div class="box">
-                <input type="name" Name="name" id="name" placeholder="Enter Name to update">
-            </div>
-            <h5>Caption:</h5>
-            <div class="box">
-                <input type="caption" Name="caption" id="caption" placeholder="Enter Caption">
-            </div>
-            <h5>Url:</h5>
-            <div class="box">
-                <input type="url" Name="url" id="url" placeholder="Enter Url">
-            </div>
-            <button class="btn">Update</button>
-        </form>
-        
     </div>
-   
-    <div class="container2">
+    
+
+    <div id="cont" class="container2">
         <h1>Memes</h1>
         <%if (values.length>0 )%>
-            <%values.forEach(function (value) {%>
-
-                <span>
-                    
-                    <div class="box-img">
-                        <img src="<%=value.url%>" alt="Some-image" style="width:400px;height: 400px;">
-                        <div class="text"  contentEditable role='textbox' aria-multiline='true'>
-                            <h4> <i class="fa fa-info-circle"></i> <%=value.caption%> by <%=value.name%></h4>
+            <%values.slice().reverse().forEach(function (value) {%>
+                
+                <div class="img-box">
+                    <figure>
+                        <img src="<%=value.url%>" alt="some image" style="width:550px; height: 550px;">
+                        <div class="text">
+                            <h4> <i class="fa fa-info-circle"></i>
+                                <%=value.caption%> by <%=value.name%>
+                            </h4>
                         </div>
-                    </div>
-                </span>
-               
+                        <figcaption>
+                            <form class="form_2" action="/update" method="post">
+                                <div id="update-box">
+                                    <input type="text" name="name" id="name" placeholder="<%=value.name%>">
+                                    <input type="text" name="caption" id="caption" placeholder="Enter Caption..">
+                                    <input type="url" Name="url" id="url" placeholder="Enter Url">
+                                    <div class="update-btn"> <button class="btn11">Update</button></div>
+
+                                </div>
+                            </form>
+                        </figcaption>
+                    </figure>
+                </div>
+
+
                 <%})%>
 
     </div>
@@ -74,6 +71,7 @@
     </div>
 
     </div>
+    
 </body>
 
 </html>

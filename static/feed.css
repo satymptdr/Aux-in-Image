@@ -1,13 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    }
-    element.style {
-        --column-gutter: 24px;
-        --row-gutter: 24px;
-        --columns: 3;
-    }
-    
+}
     body{
         background-color: #e3dddd;
         background-size: cover;    
@@ -17,12 +11,18 @@
         text-align: center;
         color: #9b5555;
     }
-    form{ 
+    .form1{ 
         display: flex;
         margin: 7px;
         border: 2px solid black;
         border-radius: 5px;
     }
+    /* .form2{ 
+        width: 50%;
+        height: 50%;
+        border: 2px solid black;
+        border-radius: 5px;
+    } */
     .container1 h3{
         margin: 7px;
     }
@@ -36,7 +36,7 @@
         border-radius: 5px;
         border: solid 2px darkgray;
     }
-    .box input{  
+    .container1 input{  
         background: none;
         padding: 5px 10px;
         border: none;
@@ -44,21 +44,24 @@
         color: black;
     }
 
-    .box-img{    
+    .img-box{    
+        /* width:600px;
+        height: 600px; */
         margin: 22px;
         position: relative;
         display: inline-block;
         overflow: hidden;
         border-radius: 20px;
-        left: 6%;
+        left: 2%;
     }
-    .box-img .text{
+    .img-box .text{
         position: absolute;
         z-index: 999;
         margin: 0 auto;
         left: 0;
         right: 0;
-        bottom: 0%;
+        top: 0%;
+        height: 43px;
         background-color: #fff5f5;
         opacity: 0.9;
         text-align: center;
@@ -69,6 +72,67 @@
     h4{
         text-align: center;
         color: #9b5555;
+    }
+    #update-box{
+        background-color: gray;
+        height: 160px;
+        
+    }
+    
+    .btn11{
+        color: white;
+    cursor: pointer;
+    outline: none;
+    margin: 2px;
+    margin-left: 215px;
+    
+    padding: 0px 16px;
+    border: 3px solid darkgray;
+    border-radius: 6px;
+    font-size: 18px;
+    background: #bc8d8d;
+    font-weight: bold;
+   
+        
+    }
+    .btn11:hover{
+        cursor: pointer;
+    }
+    /* .img-box #update-box{
+        position: absolute;
+        z-index: 999;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        bottom: 0%;
+        height: 105px;
+        background-color: #fff5f5;
+        opacity: 0.9;
+        text-align: center;
+        width: 100%;
+        color: white;
+        font: 900 35vmin/50vh cookie, cursive;
+
+    } */
+    /* .box-img .box-update .box-update-form{
+        width: 100%;
+        height: 100%;
+    } */
+   
+     input#name{
+        width: 100%;
+        border-radius: 3px;
+        height: 40px;
+    }
+     input#caption{
+        width: 100%;
+        border-radius: 3px;
+        height: 40px;
+    }
+     input#url{
+        width: 100%;
+        border-radius: 3px;
+        height: 40px;
     }
    
     .text-block {

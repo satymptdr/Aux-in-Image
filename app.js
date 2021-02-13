@@ -64,7 +64,7 @@ app.post('/submit', function (req, res) {
                newMeme.save(function (err, newMeme) {
                   if (err) return console.error(err);
                   else {
-                     res.redirect('meme');
+                     res.redirect('memes');
                   }
                });
             }
@@ -76,13 +76,13 @@ app.post('/submit', function (req, res) {
    }
 });
 
-app.get('/meme', async function (req, res) {
+app.get('/memes', async function (req, res) {
    var values = [];
    Meme.find(function (err, response) {
       if (err) console.log("error", err);
       else {
          var i;
-         for (i = 0; i < 10; i++) {
+         for (i = 0; i <100; i++) {
             console.log(response[i]);
             if (response[i] != undefined) {
                values[i] = response[i];
@@ -96,34 +96,48 @@ app.get('/meme', async function (req, res) {
 });
 
 
-// Post route to update record 
+//Post route to update record 
 app.post('/update', async (req, res) => {
    const updateName = req.body.name;
 
    Meme.findOne({ "name": req.body.name }, async (err, value) => {
-      if (err) console.log(err);
+      if (err ) {
+         console.log(err);
+         res.redirect('memes');
+          }
       else {
          var id = value.id;
+         var n = value.name;
          var c = value.caption;
          var c1 = req.body.caption;
          var u = value.url;
          var u1 = req.body.url;
-         console.log("Updating on this id : ", id);
-         var updateMeme = [{
-            $set: { "caption": c, caption: c1, "url": u, url: u1 }
-         }];
-         console.log("caption : ", req.body.caption);
-         const record = Meme.updateOne({ _id: id }, updateMeme, function (err, data) {
-            if (err) throw err;
-            else {
-               res.redirect('meme');
-               console.log("Record Updated!!!!!");
-            }
+         if (value == null) {
+            console.log(error, "Enter correct record");
+            res.redirect('memes');
+         }
+         else {
+            console.log("Updating on this id : ", id);
+            var updateMeme = [{
+               $set: { "caption": c, caption: c1, "url": u, url: u1 }
+            }];
+            console.log("caption : ", req.body.caption);
+            const record = Meme.updateOne({ _id: id }, updateMeme, function (err, data) {
+               if (err) throw err;
+               else {
+                  res.redirect('memes');
+                  console.log("Record Updated!!!!!");
+               }
 
-         });
+            });
+         }
       }
    })
 });
+ 
+       
+    
 
 
-app.listen(3000, () => console.log("Server running on port 3000!"));
+
+app.listen(8081, () => console.log("Server running on port 8081!"));
