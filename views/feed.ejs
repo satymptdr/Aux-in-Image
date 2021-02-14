@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <h1>XMeme Feed</h1>
+    <h1>XMeme</h1>
     <div class="container1">
         <form class="form1" action="/submit" method="post">
             <h3>Insert Meme</h3>
@@ -31,24 +31,25 @@
                 <input type="url" Name="url" id="url1" placeholder="Enter Url">
             </div>
             <button class="btn">Submit</button>
-
+            
         </form>
     </div>
     
+    
 
     <div id="cont" class="container2">
-        <h1>Memes</h1>
+        <h2>Memes Feed </h2>
         <%if (values.length>0 )%>
             <%values.slice().reverse().forEach(function (value) {%>
                 
                 <div class="img-box">
                     <figure>
-                        <img src="<%=value.url%>" alt="some image" style="width:550px; height: 550px;">
                         <div class="text">
                             <h4> <i class="fa fa-info-circle"></i>
                                 <%=value.caption%> by <%=value.name%>
                             </h4>
                         </div>
+                        <img id="insert-img" src="<%=value.url%>" alt="some image" >
                         <figcaption>
                             <form class="form_2" action="/update" method="post">
                                 <div id="update-box">
