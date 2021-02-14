@@ -1,0 +1,7 @@
+sudo apt-get install npm
+npm install nodemon --save -g -y
+npm install express --save -g -y
+npm install mongoose --save -g -y 
+npm install browserify --save -g -y
+npm install multer --save -g -y
+
